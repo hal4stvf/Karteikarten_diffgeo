@@ -62,8 +62,8 @@
 
 \newcommand{\defreset}{\setcounter{def}{1}}
 \newcommand{\satzreset}{\setcounter{satz}{1}}
-\newcommand{\thisdef}{\thedef\stepcounter{def}}
-\newcommand{\thissatz}{\thesatz\stepcounter{satz}}
+\newcommand{\thisdef}{\thedef\ \stepcounter{def}}
+\newcommand{\thissatz}{\thesatz\ \stepcounter{satz}}
 \begin{document}
 
 %%Neudefinition der Karten
@@ -1326,8 +1326,9 @@ $U$ bestimmen.}
 \kommentar{\scriptsize 2.4 Vektorfelder längs Kurven}
 
 \nonameyet
-{Definition \thisdef und Notiz} {Vektorfeld längs $c$}
+{\small Definition \thisdef und Notizen} {\small Vektorfeld längs $c$}
 {
+\small
 Sei $M$ diffb. Mf, $I = [a,b] \subset \R$, $c\in C^\infty(I,M)$
 \fl{Eine differenzierbare Abbildung  }
 \[
@@ -1336,11 +1337,190 @@ X: I \to TM \text{ mit } X_t := X(t)\in T_{c(t)}M
 \fl{heißt \texttt{Vektorfeld längs $c$}.}
 \fl{Wir bezeichnen den Raum der Vektorfelder längs $c$ mit $\Gamma_c(TM)$.}
 
-\fl{Beispiel: $\dot c$ ist ein Vektorfeld längs $c$.}
-\fl{Notiz: $\Gamma_c(M)$ ist ein Modul über $C^\infty(I)$.}
+\fl{\textsc{Notiz:} $\dot c$ ist ein Vektorfeld längs $c$. \\
+Genauso wie $X\circ c$ mit $X\in\Gamma(TM)$, $c\in C^\infty(I,M)$.
+Andersherum ist nicht jedes Vektorfeld längs einer Kurve Einschränkung
+eines Vektorfeldes auf $M$. Diese Aussage sollte jedoch lokal gelten.
+}
+\fl{\textsc{Notiz:} $\Gamma_c(M)$ ist ein Modul über $C^\infty(I)$.}
+\fl{\textsc{Notiz:} Für $X \in \Gamma(TM)$ ist 
+$(\nabla_{\dot c} X)(t) := \nabla_{\dot c(t)} X \in \Gamma_c(TM)$.}
 }
 {}
 
+\newcommand{\nabladt}[1][t]{\frac{\nabla}{d#1}}
+
+\nonameyet
+{\scriptsize Definition \thisdef \& Satz \thissatz} 
+{\scriptsize Kovariante Ableitung längs $c$}
+{
+	\scriptsize
+	\vspace{-2em}
+Sei $M$ diffb. Mf mit affinem Zusammenhang $\nabla$, $I =[a,b] \in \R$, 
+$c\in C^\infty(I,M)$.
+\fl{Dann existiert eine eindeutige Abbildung}
+\[
+\nabladt: \Gamma_c(TM) \to \Gamma_c(TM), \quad X \mapsto \nabladt X,
+\]
+\fl{die folgende drei Eigenschaften erfüllt für alle $X,Y \in \Gamma_c(TM)$,
+$f\in C^\infty(I)$:}
+\begin{enumerate}[1.]
+\item $\nabladt(X+Y) = \nabladt X + \nabladt Y$
+\item $\nabladt(fX) = f' X + f \nabladt X$,
+\end{enumerate}
+\fl{ist $X = Z \circ c$ für ein $Z \in \Gamma(TM)$, so gilt weiter}
+\begin{enumerate}[3.]
+\item $\nabladt X = \nabla_{\dot c} Z$.
+\end{enumerate}
+\fl{$\nabladt$ heißt auch \texttt{kovariante Ableitung längs $c$ bzw. einer
+Kurve}.}
+\fl{Weiter gilt in lokalen Koordinaten $(U,\varphi)$, 
+\vspace{-1em}
+$\varphi = (x_1,\dots,x_n)$ und $f_i \in C^\infty(c^{-1} (U))$:}
+\[
+\text{Für } X = \sum_{i=1}^n f_i \cdot \pd[x_i] \circ c 
+\quad \text{ ist } \quad 
+\nabladt X = \sum_k \left ( f_k' + \sum_{ij} (x_i \circ c)' f_j 
+\Gamma^k_{ij} \circ c \right) \cdot \pd[x_k] \circ c
+\]
+}
+{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2.5 Parallelverschiebung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defreset
+\satzreset
+\kommentar{\small 2.5 Parallelverschiebung}
+
+\nonameyet
+{Definition \thisdef} {paralleles VF}
+{
+Sei $M$ diffb. Mf, $I = [a,b] \subset \R$, $c\in C^\infty(I,M)$ und 
+$X \in \Gamma_c(TM)$.
+\fl{Falls $\nabladt X = 0 $ gilt, so heißt das Vektorfeld $X$ längs $c$ 
+\texttt{parallel}.}
+}
+{}
+
+\nonameyet
+{Satz \thissatz und Notiz} {Existenz VF längs $c$}
+{
+Sei $M$ diffb. Mf mit affinen Zusammenhang $\nabla$, 
+$I = [a,b] \subset \R$, $c\in C^\infty(I,M)$ und sei $v \in T_{c(a)}M$.
+\fl{Dann existiert ein eindeutiges Vektorfeld $X$ längs c,
+so dass $X(a) = v$.}
+\[
+ \exists ! X \in \Gamma_c(TM): X(a) = v
+ \quad \text{AWP}
+\]
+\fl{\textsc{Notiz:} $\Gamma_c(TM)$ ist ein Vektorraum und dieser Satz zeigt,
+eine Basis dieses Vektorraums zu jedem $t\in I = [a,b]$ eine Basis
+des Tangentialraums $T_{c(t)}M$ liefert.}
+}
+{}
+
+\nonameyet
+{Definition \thisdef \& Satz \thissatz} {\footnotesize Parallelverschiebung}
+{
+Sei $M$ diffb. Mf mit affinen Zusammenhang $\nabla$, 
+$I = [a,b] \subset \R$, $c\in C^\infty(I,M)$ und sei 
+\\ 
+$X\in \Gamma_c(TM)$ das eindeutige Vektorfeld mit $X(a) = v\in T_{c(a)}$.
+\fl{Die Abbildung}
+\[
+c||_a^b : T_{c(a)} \to T_{c(b)}, \quad v=X(a) \mapsto X(b) 
+\]
+heißt \texttt{Parallelverschiebung längs $c$ von $a$ nach $b$.}
+\fl{\textsc{Satz:} $c||_a^b$ ist ein linearer Isomorphismus.}
+}
+{}
+
+\nonameyet
+{Satz \thissatz} {Differenzenquotient}
+{
+Sei $M$ diffb. Mf mit affinen Zusammenhang $\nabla$, 
+$I = [-\eps,\eps]$ wobei $\eps >0$ und $c\in C^\infty(I,M)$ mit 
+$c(0) = p \in M$, $\dot c(0) = v$.
+\fl{Dann gilt}
+\[
+\nabla_v X = \lim_{t\to 0} \frac{c||_t^0 X_{c(t)} - X_p}{t}
+\]
+}
+{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2.6 Levi-Civia-Zusammenhang
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defreset
+\satzreset
+\kommentar{\footnotesize 2.6 Levi-Civita-Zusammenhang}
+
+\nonameyet
+{Satz \thissatz \& Definition \thisdef} {Torsionstensor}
+{
+	\small
+Sei $M$ diffb. Mf mit affiner Zusammenhang $\nabla$.
+\fl{Die folgende Abbildung $T$ ist ein $(1,2)$-Tensorfeld:}
+\[
+T : \Gamma(TM) \times \Gamma(TM) \to \Gamma(TM), 
+\quad (X,Y) \mapsto T(X,Y) = \nabla_X Y - \nabla_Y X - [X,Y].
+\]
+\fl{$T$ heißt \texttt{Torison} oder \texttt{Torsionstensor}.}
+\fl{Falls $T = 0$, so heißt der Zusammenhang \texttt{torisionsfrei}.}
+}
+{}
+
+\nonameyet
+{Definition \thisdef} {metrisch}
+{
+Es sei $(M,\blf{\cdot,\cdot})$ eine pseudo-Riem. Mf und $\nabla$ ein
+Zusammenhang auf $M$.
+\fl{Falls für alle $X,Y,Z \in \Gamma(TM)$ gilt, dass}
+\[
+X \blf{Y,Z} = \blf{\nabla_X Y, Z} + \blf{Y, \nabla_X Z},
+\]
+\fl{so heißt der Zusammenhang $\nabla$ \texttt{metrisch}.}
+}
+{}
+
+\nonameyet
+{Satz \thissatz} {}
+{
+\footnotesize
+Sei $(M,\blf{\cdot,\cdot})$ eine pseudo-Riem. Mf und $\nabla$ ein 
+affiner Zusammenhang von $M$. $I = [a,b] \subset \R$.
+\fl{Dann gilt}
+\[
+\nabla \text{ ist metrisch}
+\quad \Leftrightarrow \quad 
+\frac{d}{dt} \blf{X,Y} = \blf{\nabladt X, Y} + \blf{X,\nabladt Y}
+\;\; \forall c\in C^\infty(I,M),
+\; \forall X,Y \in \Gamma_c(TM)
+\]
+}
+{}
+
+\newcommand{\dg}[3]{#1\blf{#2,#3}}
+\newcommand{\blfL}[3]{\blf{#1,[#2,#3]}}
+\nonameyet
+{Satz \thissatz und Definition \thisdef} {Koszul-Formel}
+{
+Sei $(M,\blf{\cdot,\cdot})$ pseudo-Riem. Mf.
+\fl{Dann exisiert genau ein torsionsfreier und metrischer Zusammenhang $\nabla$
+auf $M$.}
+\fl{Dieser ist durch die \texttt{Koszul-Formel}}
+\[
+\begin{aligned}
+2\blf{\nabla_X Y, Z} =& 
+\dg{X}{Y}{Z} + \dg{Y}{Z}{X} - \dg{Z}{X}{Y}
+\\&
++ \blfL{Z}{X}{Y} + \blfL{Y}{Z}{X} - \blfL{X}{Y}{Z}
+\end{aligned}
+\]
+\fl{bestimmt.}
+\fl{\textsc{Definition:} Dieser eindeutiger Zusammenhang heißt 
+\texttt{Levi-Civita-Zusammenhang}.}
+}
+{}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 2.7 Geodätische
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
