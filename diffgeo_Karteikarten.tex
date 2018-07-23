@@ -2674,9 +2674,10 @@ Summanden ist gerade die Jacobigleichung.}
 Sei $(M,\blf{\cdot,\cdot})$ eine vollständige Riemannsche Mannigfaltigkeit. 
 Es gebe ein $r > 0$, so dass
 \[
-Ric_p(v) \geq \frac{1}{r^2} > 0 
+Ric_p(v,v) \geq \frac{n-1}{r^2}\blf{v,v} > 0 
 \quad \forall p\in M,
-\; \forall v\in T_pM \text{ mit } \|v\| = 1.
+\; \forall v\in T_pM 
+%\text{ mit } \|v\| = 1.
 \]
 \fl{Dann ist $M$ kompakt und der \texttt{Durchmesser} von $M$}
 \[
@@ -2687,6 +2688,180 @@ Ric_p(v) \geq \frac{1}{r^2} > 0
 \text{diam}(M) \leq \pi r.
 \]
 \fl{Weiterhin ist die Fundamentalgruppe $\pi_1(M)$ ist endlich.}
+}
+{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 5. Riemannsche Untermannigfaltigkeiten
+% 5.1 Zweite Fundamentalform
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defreset
+\satzreset
+\kommentar{5.1 Zweite Fundamentalform}
+\newcommand{\M}[1][M]{\overline{#1}}
+
+
+\nonameyet
+{Setup } {1/2}
+{
+\scriptsize
+Sei $M$ $n$-dim. Mf, $(\M,\M[g]=\blf{\cdot,\cdot})$ Riemannsche Mf der Dimension $n+k$.
+Sei $i : M \to \M$ eine Immersion. Mittels 
+\vspace{-1em}
+\[
+\blf{v,w} := \blf{di_p(v),di_p(w)} \quad \text{ für } p\in M, \; v,w \in T_pM
+\vspace{-1em}
+\]
+\fl{zieht man die Metrik von $\M$ auf $M$ zurück 
+(\texttt{isometrischen Immersion}).}
+\fl{Alle Betrachtungen sind lokal und damit kann o.B.d.A. $i$ als Einbettung 
+angenommen werden. In diesem Sinn betrachten wir $M \subset \M$, da 
+$i(M) \overset{\sim}{=} M$.}
+
+\fl{Sei $(U,\varphi)$ Unter-Mfskarte mit $\varphi = (x_1,\dots,x_{n+k})$
+und $(U\cap M,\psi)$ mit $\psi:=(x_1,\dots,x_n)$ eine Karte von $M$. 
+$\varphi$ sei sogewählt, das $\varphi(U)$ invariant unter der Projektion
+$\pi : \R^{n+k} \to \R^n$ ist. Mithilfe dieser Karten können wir eine 
+gegebene Funktion $f: M \to \R$ auf $U$ Fortsetzen der Einschränkung 
+$f|_{U\cap M}:$}
+\[
+\M[f] = f\circ \psi ^{-1} \circ \pi \circ \varphi
+\]
+}
+{}
+
+\nonameyet
+{Setup } {2/2}
+{
+	\scriptsize
+\fl{Ähnlich kann man mit lokalen Vektorfelder auf $M$ verfahren. 
+Es seien $(\pd[x_1],\dots,\pd[x_{n+k}])$ die zu $\varphi$ assoziierten lokalen
+Basisfelder. Schränken wir diese auf $U\cap M$ ein, so hat man die lokalen 
+Basisfelder der Karte $\psi$ von $M$. Für $X\in \Gamma(TU\cap M)$ können wir
+schreiben}
+\[
+X = \sum_{i=1}^n f_i \pd[x_i]\bigg|_{U\cap M}
+\]
+Und erhalten für 
+\[
+\M[X] := \sum_{i=1}^n \M[f]_i \pd[x_i] \quad \text{ein } \M[X] \in \Gamma(TU)
+\text{ mit }
+\M[X]|_M = X .
+\]
+\fl{Dies kann auch so ausdrücken}
+\[
+\M[X] \circ i = di(X),
+\]
+d.h. $X$ und $\M[X]$ sind $i$-verwandt.
+}
+{}
+
+\nonameyet
+{\scriptsize Definition} {\scriptsize Normalenraum,2.Fundamentalform}
+{
+\scriptsize
+\vspace{-2em}
+Alles wie im setup. Sei $p\in M \subset \M$. 
+Mittels Isomorphie sei $T_pM = di(T_pM)$ 
+\fl{Wir definieren den \texttt{Normalenraum} von $M$ in $\M$ in $p$ durch}
+\[
+\nu_p M := \{ v\in T_p\M | v \perp T_pM \}.
+\]
+\fl{Wir nennen $\nu M := \sqcup_{p\in M} \nu_p M$ das \texttt{Normalenbündel}.}
+%\[
+%\nu M : = \bigcup_{p\in M} \nu_p M 
+%\text{ trägt die Struktur eines Vektorbündels über $M$.}
+%\]
+\fl{Betrachte die Zerlegung:}
+\vspace{-2em}
+\[
+T_p\M = T_p M \otimes \nu_p M 
+\text{ und } T_pM \ni v = 
+\overbrace{v^{\top}}^{\text{tang. Anteil}} 
++ \overbrace{v^{\perp}}^{\text{normalen Anteil}}
+\]
+\fl{Seien $X,Y \in \Gamma(TU\cap M)$ beliebig fortgesetz zu
+$\M[X],\M[Y] \in \Gamma(TU)$ und betrachte }
+\[
+\M[\nabla]_{\M[X]} \M[Y] = (\M[\nabla]_{\M[X]} \M[Y])^\top +
+(\M[\nabla]_{\M[X]} \M[Y])^\perp.
+\]
+\fl{Wir definieren die \texttt{zweite Fundamentalform $\alpha$ von M} durch}
+\[
+\alpha(X,Y)(p) := (\M[\nabla]_{\M[X]_p} \M[Y])^\perp
+\]
+\fl{\textsc{Lemma:} Die zweite Fundamentalform $\alpha$ ist wohldefiniert,
+symmetrisch in $X$ und $Y$ und $C^\infty$-linear.}
+\fl{\textsc{Gauß-Formel:}}
+\vspace{-2em}
+\[
+(\M[\nabla]_{\M[X]} \M[Y])(p) = (\M[\nabla]_{X} Y)(p) 
+= (\nabla_X Y)(p) + (\alpha(X,Y))(p)
+\]
+}
+{}
+
+\nonameyet
+{\small Definitionen und Sätze} {\scriptsize totalgeodätisch}
+{
+\scriptsize
+\fl{Es gilt}
+\vspace{-2.5em}
+\[
+\frac{\M[\nabla]}{dt} Y = \nabladt Y + \alpha(\dot c, Y)
+\]
+
+\fl{\textsc{Definition:} Eine Unter-Mf $M \subset \M$ heißt
+\texttt{totalgeodätisch in $\M$}, wenn 
+$\forall p\in M, \;\forall v\in T_pM$
+die Geodätische in $\M$ durch $p$ in Richtung $v$ komplett in $M$ 
+verläuft. 
+\par Dies gilt genau dann, wenn die zweite Fundamentalform verschwindet.}
+
+\fl{\textsc{Weingarten-Abbildung:} Für die Erweiterung 
+$\M[\xi] \in \Gamma(\nu U)$ gibt lokal folgendes Sinn}
+\vspace{-1em}
+\[
+\blf{\M[\nabla]_X \xi, Y} = - \blf{\xi,\alpha(X,Y)}.
+\]
+
+\fl{\textsc{Gauß-Gleichung:} Für alle $x,y,z,w \in T_pM$ gilt}
+\[
+\blf{\M[R](x,y)z,w} = \blf{R(x,y)z,w} - \blf{\alpha(x,w),\alpha(y,z)}
++ \blf{\alpha(x,z),\alpha(y,w)}
+\]
+
+\fl{\textsc{Korollar}: Hat $\M$ kostanten Schnittkrümmung $\kappa$ so gilt}
+\vspace{-1em}
+\[
+K(\sigma) = \kappa + \blf{\alpha(x,x),\alpha(y,y)} - \|\alpha(x,y)\|^2
+\]
+\fl{Ist $M$ also totalgeodätisch in $\M$, dann hat $M$ ebenfalls konst. 
+Schnittk.}
+}
+{}
+
+\nonameyet
+{Definition} {Weingartenoperator}
+{
+	\small
+\fl{Wir definieren den Weingartenoperator $A_\xi$ durch}
+\[
+A_\xi X = -(\M[\nabla]_X \xi)^\top.
+\]
+\fl{Damit wird aus der der Weingartengleichung}
+\[
+\blf{A_\xi X,Y} = \blf{\xi,\alpha(X,Y)}.
+\]
+\fl{Zu dem ist $A_\xi :T_pM \to T_pM$ ein linearer selbstadjungierter 
+Operator. Dieser ist orthogonal diagonalisierbar. Die Eigenvektoren
+nennen wir \texttt{Hauptkrümmungsrichtung} und die Eigenwerte 
+\texttt{Hauptkrümmung}.}
+\tiny 
+\fl{\textsc{Was fehlt:}  Beispiel,Normalenzusammenhang,
+		komische Abbildung,
+		Codazzi-Gleichung,
+		Bemerkung, 5.2.}
 }
 {}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
