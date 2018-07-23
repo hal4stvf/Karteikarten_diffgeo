@@ -54,6 +54,8 @@
 \newcommand{\pp}[1][i]{\frac{\partial}{\partial x_{#1}}\bigg|_p}
 \newcommand{\pd}[1][x_i]{\frac{\partial}{\partial {#1}}}
 \newcommand{\blf}[1]{\langle #1 \rangle}
+\newcommand{\nabladt}[1][t]{\frac{\nabla}{d#1}}
+\newcommand{\nablapt}[1][t]{\frac{\nabla}{\partial#1}}
 
 \newcounter{def}
 \setcounter{def}{1}
@@ -1332,7 +1334,7 @@ $U$ bestimmen.}
 Sei $M$ diffb. Mf, $I = [a,b] \subset \R$, $c\in C^\infty(I,M)$
 \fl{Eine differenzierbare Abbildung  }
 \[
-X: I \to TM \text{ mit } X_t := X(t)\in T_{c(t)}M
+X: I \to TM,\; t \mapsto X_t := X(t) \text{ mit } X_t \in T_{c(t)}M \; \forall t\in I
 \]
 \fl{heißt \texttt{Vektorfeld längs $c$}.}
 \fl{Wir bezeichnen den Raum der Vektorfelder längs $c$ mit $\Gamma_c(TM)$.}
@@ -1348,7 +1350,6 @@ $(\nabla_{\dot c} X)(t) := \nabla_{\dot c(t)} X \in \Gamma_c(TM)$.}
 }
 {}
 
-\newcommand{\nabladt}[1][t]{\frac{\nabla}{d#1}}
 
 \nonameyet
 {\scriptsize Definition \thisdef \& Satz \thissatz} 
@@ -1783,6 +1784,7 @@ differenzierbare Abbildung.
 \frac{\nabla}{ds} \frac{\partial f}{\partial t} 
 = \frac{\nabla}{dt} \frac{\partial f}{\partial s}
 \]	
+TODO: Vielleicht ein Wort dazu wie diese Ableitung zu verstehen sind
 }
 {}
 
@@ -1872,6 +1874,59 @@ Man bezeichnet eine solche Umgebung als geodätisch konvex.
 {}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2.10 Satz von Hopf-Rinow 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defreset
+\satzreset
+\kommentar{2.10 Satz von Hopf-Rinow}
+
+
+\nonameyet
+{Definition \thisdef} {\small (geodätisch) vollständig}
+{
+	\small
+Sei $(M,g)$ eine pseudo-Riem. Mf mit Levi-Civita-Zusammenhang $\nabla$.
+\fl{Gilt, dass für alle $p\in M$ die Exponentialabbildung} 
+\[
+\exp_p : T_pM \to M
+\]
+\fl{auf ganz $T_pM$ definiert ist, d.h. jede Geodätische von $M$ kann auf 
+ganz $\R$ erweitert werden, dann nnen wir $(M,g)$ 
+\texttt{(geodätisch) vollständig}.}
+}
+{}
+
+\nonameyet
+{\small Satz und Bemerkungen} {\small Satz von Hopf-Rinow}
+{
+	\vspace{-2em}
+\scriptsize
+Es sei $(M,g)$ zusammenhängende Riem. Mf, $p\in M$.
+\fl{Dann sind die folgenden Bedingungen äquivalent:}
+\begin{enumerate}[1.]
+\item $exp_p$ ist auf ganz $T_pM$ definiert
+\item Abgeschlossene und beschränkte Teilmengen von $M$ sind kompakt.
+\item $M$ ist als metrischer Raum vollständig.
+\item $M$ ist geodätisch vollständig.
+\end{enumerate}
+\fl{Außerdem implizieren obige Bedingungen}
+\begin{enumerate}[5.]
+\item Zu jedem $q\in M$ gibt es eine Geodätische $\gamma$, die $p$ und $q$
+verbindet, so dass $L(\gamma) = d(p,q)$.
+\end{enumerate}
+
+\begin{enumerate}[(i)]
+\item \textsc{Bemerkung:} Aus $5. \not \Rightarrow 3.$:
+Betrachte konvexe offene Teilmenge des $\R^n$
+\item \textsc{Korollar:} Zwischen je zwei $p,q \in M$ (wie oben und vollständig)
+existiert eine Geodätische der Länge $d(p,q)$. (Nicht eindeutig: Siehe $S^n$)
+\item \textsc{Korollar:} $M$ (wie oben \& kompakt) ist vollständig.
+\item \textsc{Bemerkung:} Auf nichtkompakten Riemn. Mf kann die Vollständigkeit von der gewählten Metrik abhängen.
+\end{enumerate}
+}
+{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 2.11 Isometrien und Killingfelder
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \kommentar{2.11 Isometrien und Killingfelder}
@@ -1955,9 +2010,688 @@ für alle $v,w \in T_pM$,$p\in M$
 \end{enumerate}
 }
 {}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2.12 Krümmung, Schnittkrümmung und Ricci-Krümmung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defreset
+\satzreset
+
+\kommentar{\small $\overset{\text{Riemmansche}}{\text{Krümmungstensor}}$}
+
+\nonameyet
+{Definition \thisdef und Satz} {\small Riemannscher Krümmungstensor}
+{
+\small
+Sei $M$ differenzierbare Mf und $\nabla$ ein affiner Zusammenhang auf $M$.
+Die Abbildung  
+\[
+R : \Gamma(TM) \times \Gamma(TM) \times \Gamma(TM) \to \Gamma(TM); 
+\quad (X,Y,Z) \mapsto R(X,Y)Z
+\]
+\fl{definiert durch}
+\[
+R(X,Y)Z = \nabla_X \nabla_Y Z - \nabla_Y \nabla_X Z - \nabla_{[X,Y]} Z
+\]
+\fl{ist ein $(1,3)$-Tensorfeld. Er wird der 
+\texttt{Riemannsche Krümmungstensor von $\nabla$} genannt.}
+Ist $(M,g)$ eine pseudo-Riem. Mf mit Levi-Civita-Zusammenhang $\nabla$,
+\fl{so nennt man $R$ auch \texttt{Riemannsche Krümmungstensor von $g$}.}
+}
+{}
+
+\nonameyet
+{Bemerkung} {\small Sichtweise auf $R$}
+{
+Mögliche Sichtweise auf den Riemannsche Krümmungstensor:
+\fl{In lokalen Koordinaten eine beliebigen pseudo-Riem. Mf $(M,g)$ gilt}
+\[
+R(\pd[x_i],\pd[x_j])Z = \nabla_{\pd[x_i]}\nabla_{\pd[x_j]} Z - 
+\nabla_{\pd[x_j]}\nabla_{\pd[x_i]} Z
+\]
+\fl{d.h, $R$ misst, inwieweit die obigen kovarianten Ableitungen miteinander 
+kommutieren.}
+}
+{}
+
+\nonameyet
+{Lemma 1} {}
+{
+\small
+$(M,g)$, $(N,h)$ seien pseudo-Riem. Mf mit entsprechenden 
+Levi-Civita-Zusammenhängen $\nabla^M$ und $\nabla^N$ und dazu
+assoziierten Riemannsche Krümmungstensoren $R^M$ und $R^N$.
+\fl{Ist $\varphi: M \to N$ eine Isometrie, so gilt für alle 
+$X,Y,Z \in \Gamma(TM)$:}
+\[
+\varphi_* (R^M(X,Y)Z) = R^N (\varphi_* X, \varphi_* Y) \varphi_* Z
+\]
+}
+{}
+
+\nonameyet
+{Bemerkung 2} {}
+{
+Eine Riemannsche Mannigfaltikeit ist genau dann lokal isometrisch zu $\R^n$,
+wenn der Krümmungstensor verschwindet.
+}
+{}
+
+\nonameyet
+{Satz \thissatz} {formale Eigenschaften von $R$}
+{
+\small
+Sei $(M,\blf{\cdot,\cdot})$ eine pseudo-Riem. Mf mit assoziiertem 
+Krümmungstensor $R$.
+\fl{Dann gilt für alle $X,Y,Z,W \in \Gamma(TM)$:}
+\begin{enumerate}[1.]
+\item $R(X,Y)Z = -R(Y,X)Z$
+\item $R(X,Y)Z + R(Y,Z)X + R(Z,X)Y  = 0$ \hfill (1. Bianchi-Identiät)
+\item $\blf{R(X,Y)Z,W} = -\blf{R(X,Y)W,Z}$ 
+\item $\blf{R(X,Y)Z,W} = \blf{R(Z,W)X,Y}$
+\end{enumerate}
+}
+{}
+
+\nonameyet
+{Definition \thisdef} {algebraischer Krümmungstensor}
+{
+\small
+$(V,\blf{\cdot,\cdot})$ sei ein endlich-dim. pseudo-Euklidscher VR.
+\fl{Eine trilineare Abbildung}
+\[
+R: V\times V\times V\to V, \quad (u,v,w) \mapsto R(u,v)w,
+\]
+\fl{welche die vier formalen Eigenschaften des Riemannschen Krümmungstensors
+erfüllt heißt \texttt{algebraischer Krümmungstensor}.}
+\fl{Für den Krümmungstensor $R$ einer pseudo-Riem. Mf $(M,g)$ mit $p\in M$ sind 
+also alle Abbildung:}
+\[
+R_p : T_pM \times T_pM \times T_pM \to T_pM 
+\]
+\fl{algebraischer Krümmungstensoren.}
+}
+{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 2.12 Schnittkrümmung und Ricci-Krümmung
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defreset
+\satzreset
+\kommentar{Schnittkrümmung \& Co}
+
+\nonameyet
+{Definition \thisdef und Lemma \thissatz} {2-Ebene,\small nichtentartet}
+{
+Sei $(V,\blf{\cdot,\cdot})$ ein pseudo-Eukl. VR. $\sigma \subset V$ sei
+ein 2d-Unterraum, auch \texttt{2-Ebene} genannt,  und eine $\{u,v\}$ eine Basis.
+\fl{Wir definieren}
+\[
+Q(u,v) = \blf{u,u}\blf{v,v} - \blf{u,v}^2.
+\]
+\fl{Falls $\blf{\cdot,\cdot}$ eingeschränkt auf $\sigma$ eine nichtentartete
+symmetrische Bilinearform ist, so nennen wir auch \texttt{$\sigma$ 
+nichtentartet}.} 
+\fl{\textsc{Lemma \thesatz:} $\sigma$ ist genau dann nichtentartet, wenn 
+$Q(u,v) \neq 0$.}
+}
+{}
+
+\nonameyet
+{\scriptsize Definition \thisdef und Lemma \thissatz} {\scriptsize Schnittkrümmung}
+{
+\small
+Sei $(M,\blf{\cdot,\cdot})$ eine pseudo-Riem. Mf mit Levi-Civita-Zusammenhang
+$\nabla$ mit assoziierten Krümmungstensor $R$. 
+Sei $p\in M$ und $\sigma \subset T_pM$ eine nichtentartete 2-Ebene und 
+$\{u,v\}$ eine Basis $\sigma$.
+\fl{Die Zahl}
+\[
+K(\sigma) = \frac{\blf{R(u,v)v,u}}{Q(u,v)}
+\]
+\fl{definieren wir als die \texttt{Schnittkrümmung}.}
+\fl{\textsc{Lemma \thesatz:} Diese Definition ist unabhängig von der Wahl der Basis
+$\{u,v\}$.}
+}
+{}
+
+\nonameyet
+{\scriptsize Definition \thisdef und Beispiele} 
+{\scriptsize konstante Schnittkrümmung}
+{
+Sei $(M,g)$ eine pseudo-Riemannsche Mf, $\kappa \in \R$
+
+\fl{Gilt:}
+\[
+K(\sigma) = \kappa \quad \forall p\in M, \forall 
+\text{ nichtentartete 2-Ebenen } \sigma \subset T_pM
+\]
+\fl{So sagen wir $M$ hat \texttt{konstante Schnittkrümmung}.}
+\fl{\textsc{Beispiel:} Für $M=\R^n$ gilt $R =0$ und damit $K(\sigma) = 0$
+unabhängig von $\sigma$.}
+\fl{Gilt $\kappa = 0$ so heißt der Raum \texttt{flach}.}
+}
+{}
+
+\nonameyet
+{Lemma \thissatz und Beispiel} {$S^n$ Krümmung}
+{
+Es seien $M,N$ pseudo-Riemannsche Mf, $p\in M$, $\varphi: M \to N$ eine Isometrie,
+$\sigma \subset T_pM$ eine 2-Ebene.
+\fl{Dann gilt:}
+\[
+K^M(\sigma) = K^N(d\varphi_p(\sigma)).
+\]
+\fl{\textsc{Beispiel:} $S^n$, versehen mit Standardmetrik, hat konstante
+Krümmung.}
+}
+{}
+
+\nonameyet
+{Lemma \thissatz} 
+{ 
+\begin{minipage}{0.43 \linewidth}
+Approximation nichtentarteter Ebenen
+\end{minipage}
+}
+{
+Sei $(V,\blf{\cdot,\cdot})$ pseudo-Eukl. VR. Seien $u,v$ zwei linear
+unabhängige Vektoren, die eine entarte 2-Ebene aufspannen.
+\fl{Dann existiert zu Umgebung $U$ von $v$ ein $z\in U$, so dass 
+$u$ und $z$ eine nichtentartete Ebene aufspannen.}
+}
+{}
+
+\nonameyet
+{Satz 1} {$R = R'$}
+{
+	\small
+Es sei $(V,\blf{\cdot,\cdot})$ ein pseudo-Eukl. VR mit zwei Krümmungstensoren
+$R$, $R'$ und dazugehörigen Schnittkrümmungen $K$, $K'$.
+\fl{Gilt:}
+\[
+K(\sigma) = K'(\sigma) \quad 
+\forall \text{ nichtentartete 2-Ebenen } \sigma \subset V,
+\]
+\fl{dann ist}
+\[
+R = R'
+\]
+}
+{}
+
+\nonameyet
+{Satz 2} {Gestalt von $R$}
+{
+Es $(M,\blf{\cdot,\cdot})$ eine pseudo-Riem. Mf mit konstanter Schnittkrümmung 
+$\kappa$.
+\fl{Dann hat der Riemmansche Krümmungstensor von $g$ folgende Gestalt: }
+\[
+R(u,v)w = \kappa\cdot(\blf{v,w}u - \blf{u,w}v) .
+\]
+}
+{}
+
+\nonameyet
+{Definition \thisdef} {pseudo ONB, Ricci-Tensor}
+{
+	\scriptsize
+	\vspace{-3em}
+Sei $(M,g)$ pseudo-Riem. Mf, $p\in M$ und $R$ ein Krümmungstensor.
+\fl{Der \texttt{Ricci-Tensor} $Ric$ ist ein $(0,2)$ Tensorfeld,
+definiert durch }
+\[
+Ric(X,Y)(p) = Spur(v\mapsto R_p(v,X(p))Y(p)).
+\]
+\fl{Ist $B:=\{e_1,\dots,e_n\}$ eine Basis von $T_pM$ für die gilt }
+\[
+\blf{e_i,e_i} = \pm \text{ für } i\in\{1,\dots,n\}
+\quad \text{und} \quad 
+\blf{e_i,e_j} = 0 \text{ für }  i \neq j
+\]
+\fl{so heißt $B$ \texttt{pseudo-ONB von $T_pM$}.}
+\fl{Für so ein $B$ können wir $Ric$ schreiben als}
+\[
+Ric(X,Y)(p) 
+= \sum_{i=1}^n 
+\blf{e_i,e_i} \cdot \blf{R_p(e_i,X(p))Y(p),e_i}.
+\]
+\fl{Daraus liest man ab, das $Ric$ symmetrisch ist.}
+\fl{Es gilt auch : $Ric = C^1_1(R)$ TODO}
+\fl{\textsc{Intepretation 1:} Ist $v\in T_pM$, dann kann man $Ric(v,v)$ als
+Mittel über die Schnittkrümmung aller 2-Ebenen, die $v$ enthalten, verstehen.}
+}
+{}
+
+\nonameyet
+{Definiton \thisdef} {Skalarkrümmung}
+{
+	\small
+Sei $(M,\blf{\cdot,\cdot})$ pseudo-Riem. Mf, $p\in M$, $\{e_1,\dots,e_n\}$
+pseudo ONB von $T_pM$.
+\fl{Die \texttt{Skalarkrümmung} $scal\in C^\infty(M)$ ist definiert durch}
+\[
+scal(p) = \sum_{i=1}^n \blf{e_i,e_i} Ric(e_i,e_i).
+\]
+\fl{\textsc{Interpretation 1:} Mittel aller Schnittkrümmung in $p\in M$.}
+}
+{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3 Globale Riemannsche Geometrie
+% 3.1 Jacobifelder
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defreset
+\satzreset
+\kommentar{3.1 Jacobifelder}
+
+\nonameyet
+{Definition \thisdef und Lemma, Satz \thissatz} {\tiny Variationsvektorfeld}
+{
+	\scriptsize
+	\vspace{-4em}
+Sei $(M,g)$ eine Riemannsche Mf, $R$ der Krümmungstensor von $g$,
+$c \in C^\infty([a,b],M)$, $\varepsilon > 0$.
+\[
+f: \underbrace{(-\varepsilon,\varepsilon) \times [a,b]}_{=: I} \to M,
+\quad (s,t) \mapsto f(s,t) = f_s (t)
+\quad \text{mit} \quad
+f_0(t) = c(t) \; \forall t\in [a,b]
+\]
+\vspace{-2em}
+\fl{heißt \texttt{Variation von c}. Es ist $f \in C^\infty(I,M)$.}
+%~\\
+Sei $V \in \Gamma_f(TM)$, also $V: (-\eps,\eps) \times [a,b] \to TM$ ist
+glatt mit 
+$V(s,t) \in T_{f(s,t)}M$.
+
+%%%%
+\fl{\textsc{Lemma:} Es gilt}
+\vspace{-3em}
+\[
+\nablapt[s] \nablapt V 
+= \nablapt \nablapt[s] V 
++ R(\frac{\partial f}{\partial s},\frac{\partial f}{\partial t}) V.
+\]
+
+Sei nun für alle $s\in (-\eps,\eps)$ die Kurve $f_s$ eine Geodätische. 
+Insbesondere sei $f_0 =: \gamma$.
+\fl{Wir definieren das Vektorfeld $J$ längs $\gamma$ 
+namens \texttt{Variationsvektorfeld von $f$} mit}
+\[
+J : [a,b] \to TM, \; 
+t \mapsto J(t) := \frac{\partial f}{\partial s} (s=0,t)
+= \frac{\partial f}{\partial s}|_{s=0} (t) 
+\]
+
+%%%%
+%\fl{\textsc{Satz:} } 
+%\[
+%\nabladt^2 J + R(J,\dot \gamma) \dot \gamma = 0 \qquad \text{(Jacobigleichung)}
+%\]
+\vspace{-2em}
+\[
+\text{\textsc{Satz 1:}} \quad 
+J  \text{ erfüllt }
+\underbrace{\nabladt^2 J + R(J,\dot \gamma) \dot \gamma = 0}
+_{\text{\textsc{(Jacobigleichung)}}}
+\; \Leftrightarrow \;
+\exists \text{ Variation } f: I \to M \text { mit $J$ als Variationsvektorfeld.} 
+\]
+
+%%%%
+\fl{\textsc{Definition:} Allgemein heißt ein Vektorfeld längs einer Geodätischen
+$\gamma$, welches
+die Jacobigleichung erfüllt, \texttt{Jacobifeld}.}
+}
+{}
+
+\nonameyet
+{Korollar zu Satz 1} {}
+{
+\small
+Sei $(M,g)$ eine Riemannsche Mf, $R$ der Krümmungstensor von $g$, 
+$\gamma : [0,b] \to M$ sei eine Geodätische und 
+$J$ ein Jacobifeld längs $\gamma$ mit $J(0) = 0$, $v = \dot \gamma(0)$,
+$w = \nabladt J (0)$.
+\fl{Dann gilt}
+\[
+J(t) = (d \exp_p)_{tv}(tw)
+\]
+}
+{}
+\nonameyet
+{Satz \thissatz} {}
+{
+	\small 
+Sei $(M,g)$ n-dim. Riem. Mf, $\gamma : [a,b] \to M$ eine Geodätische in $M$.
+\fl{Dann bilden die Jacobifelder längs $\gamma$ einen $2n$-dim Vektorraum.
+Genauer:}
+\[
+\forall v,w \in T_{\gamma(a)}M \quad \exists ! \text{ Jacobifeld } J: 
+\quad J(a) =  v ,\; \nabladt J (b) = w
+\]
+\[
+I : \{\text{Jacobifelder längs $\gamma$}\} \to T_pM \oplus T_pM,
+\quad J \mapsto (J(a),\nabladt J(b)) 
+\quad \text{ ist ein Isomorphismus}.
+\]
+(TODO: Lösung von DGL bilden Vektorraum)
+}
+{}
+
+\nonameyet
+{Beispiele 1} {}
+{
+	\small
+\begin{enumerate}[1.]
+\item $\dot \gamma$ immer Jacobifeld
+\item $J(t) = t \dot\gamma(t)$ Jacobifeld
+\item $J(t) = f(t) \dot \gamma(t)$
+\item Sei $\gamma\in C^\infty([0,a],M)$. Betrachte die Variation 
+$f(s,t) = \text{exp}_p(tv(s))$, wobei $v(s)$ Kurve in $T_pM$ ist.
+Setze $v = v(0)$ und $w = v'(0)\in T_pM$. 
+Für alle $s$ ist $f_s \in C^\infty$ eine Geodätische, also folgt
+\[
+J(t) = \frac{\partial f}{\partial s} (0,t) = (d \exp_p)_{tv}(tw)
+\]
+ein Jacobifeld längs $\gamma_v$ mit $J(0) = 0$ ist.
+\end{enumerate}
+}
+{}
+
+\nonameyet
+{Satz \thissatz } {}
+{
+	\small
+Sei $M$ Riemannsche Mf mit konstanter Krümmung $\kappa$.
+Es sei $\gamma : [0,a] \to M$ eine nach Bogenlänge parametrisierte Geodätische
+in $M$. 
+\\ 
+Weiter sei $J$ ein Jacobifeld längs $\gamma$ mit $J(0) = 0$ 
+und $J(t) \perp \dot c(t)$.
+\\
+Weiterhin sei $X$ das eindeutige parallele Vektorfeld längs $\gamma$ mit 
+$X(0) = \nabladt J (0)$.
+\fl{Dann gilt:}
+\[
+J(t) =
+\begin{cases}
+\frac{\sin(t\sqrt{\kappa})}{\sqrt{k}} X(t)  & \kappa > 0\\
+tX(t) & \kappa = 0\\
+\frac{\sinh(t\sqrt{-\kappa})}{\sqrt{-k}} X(t)  & \kappa < 0\\
+\end{cases}
+\]
+}
+{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3.2 Konjungierte Punkte
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defreset
+\satzreset
+\kommentar{3.2 Konjugierte Punkte}
+
+
+\nonameyet
+{Definiton \thisdef} {\scriptsize Konjugierte Punkte,Vielfachheit}
+{
+\small
+Sei $(M,g)$ eine $n$-dim. Riemannsche Mf, $\gamma : [a,b] \to M$ eine nichtkonstante
+Geodätische in $M$
+mit $\gamma(a) = p$ und $\gamma(b) = q$.
+\fl{Existiert ein Jacobifeld $J$ entlang $\gamma$ mit $J(a) = 0$ und 
+$J(b) = 0$, das nirgends verschwindet, so sagen wir }
+\texttt{$q$ ist entlang $\gamma$ zu $p$ konjugiert} \textit{oder auch} 
+$p,q$ sind \texttt{konjugierter Punkt entlang $\gamma$}.
+\fl{Sei $\gamma$ wie oben, dann gilt:}
+\[
+\left\{
+\text{$J$ ist Jacobifeld entlang $\gamma$} 
+\;|\; 
+\text{$q$ ist entlang $\gamma$ zu $p$ konjugiert}
+\right \}
+\]
+\fl{ist ein $(n-1)$-dim. Vektorraum. Diese Dimension wird auch 
+\texttt{Vielfachheit des konjugierten Punktes $q$} genannt.}
+\fl{\textsc{Beipiel 1:} $S^n$ TODO}
+\fl{\textsc{Beipiel 2:} $\kappa <= 0$ TODO}
+}
+{}
+
+\nonameyet
+{Satz \thissatz} {}
+{
+\small
+$(M,g)$ $n$-dim. Riemannsche Mf, $\gamma: [0,a] \to M$ eine Geodätische mit 
+$p = \gamma(0)$, $v = \dot \gamma(0)$.
+\fl{Dann gilt}
+\begin{enumerate}[1.]
+\item  Der Punkt $\gamma(t_0)$ für $t_0\in [0,a]$ ist genau dann entlang $\gamma$
+zu $p$ konjungiert, wenn $t_0v$ ein kritischer Punkt von $\exp_p$ ist.
+\item Die Vielfachheit von $\gamma(t_0)$ ist gleich der Dimension des 
+Kerns von $(d\exp)_p(t_0v)$.
+\end{enumerate}
+
+}
+{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3.3 Der Satz von Hadamard
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defreset
+\satzreset
+\kommentar{3.3 Satz von Hadamard}
+
+\nonameyet
+{Satz \thissatz} {Version 1}
+{
+$(M,g)$ sei vollständige Riemannsche Mannigfaltikeit mit nichtpositiver
+Schnittkrümmung, d.h. $K(\sigma) \leq 0$ für alle 2-Ebenen 
+$\sigma \subset T_pM$, $\forall p\in M$.
+\fl{Dann gibt es keine konjugierten Punkte in $M$, d.h.}
+\[
+\exp_p : T_pM \to M \quad \forall p\in M
+\]
+ist ein lokaler Diffeomorphismus auf ganz $T_pM$.
+}
+{}
+
+\nonameyet
+{Satz \thissatz} {Version 2}
+{
+Sei $(M,g)$ zusammenhängende und vollständige Riem. Mf mit nichtpositiver
+Schnittkrümmung.
+\fl{Dann ist }
+\[
+\exp_p : T_pM \to M \quad \forall p\in M
+\]
+\fl{eine differenzierbare Überlagerung.}
+}
+{}
+
+\nonameyet
+{Satz \thissatz} {Version 3, Cartan-Hadamard}
+{
+Sei $(M,g)$ vollständige, einfach zusammenhängende Riem Mf mit
+nichtpositiver Schnittkrümmung.
+\fl{Dann ist }
+\[
+\exp_p : T_pM \to M \quad \forall p\in M
+\]
+\fl{ein Diffeomorphismus.}
+\fl{Insbesondere existiert für beliebige Punkt $p,q\in M$, genau eine 
+Geodätische von $p$ nach $q$.}
+}
+{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3.5 Variation der Energie
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defreset
+\satzreset
+\kommentar{3.5 Variation der Energie}
+
+\nonameyet
+{\small Definition \thisdef \& Notiz} {\small Energiefunktional}
+{
+\footnotesize
+\vspace{-2em}
+Sei $(M,g)$ ein Riemannsche Mf, $c \in C^\infty([0,a],M)$ mit 
+Länge 
+\[
+L(c) = \int_0^a \| \dot c(t) \| dt.
+\]
+Sei weiter $\eps > 0$ und $f : (-\eps,\eps) \times [a,b] \to M$ eine 
+Variation von $c$.
+\fl{Wir nennen die Abbildung $E$}
+\[
+E : \Omega_{0,a} \to \R, \; c \mapsto E(c) = \int_0^a \|\dot c(t)\|^2 dt 
+\]
+\fl{das \texttt{Energiefunktional}.}
+
+%%%%
+\fl{\textsc{Notiz 1:} Weiter gilt mit der Cauchy-Schwarz-Ungleichung:}
+\[
+\left(\int_0^a \|\dot c(t) \| \cdot 1 dt \right) ^2
+= \quad  
+\fbox{$L(c)^2 \leq aE(c) $}
+\quad = 
+\left(\int_0^a \|\dot c(t) \|^2 dt \right) \cdot \left(\int_0^a 1 dt \right) 
+\]
+\fl{Mit Gleichheit genau dann, wenn $c$ proportional zur Bogenlänge 
+parametrisiert ist}
+
+%%%%
+%\scriptsize
+\fl{\textsc{Notiz 2:} Aussagen in 3.5 gelten z.T. auch für $L$, falls 
+$c$ eine reguläre Kurve ist.} 
+}
+{}
+
+\nonameyet
+{Lemma 1} {}
+{
+\small
+Sei $(M,g)$ Riemannsche Mf, $p,q \in M$ sowie $\gamma :[a,b] \to M$ eine die 
+Länge minimierende Geodätische von $p$ nach $q$.
+\fl{Dann gilt für alle $c\in C^\infty([0,a],M)$ von $p$ nach $q$:}
+\[
+E(\gamma) \leq E(c).
+\]
+\fl{Mit Gleichheit genau dann, wenn $c$ eine die Länge minimierende Geodätische 
+ist.}
+}
+{}
+
+\nonameyet
+{Lemma 2 und Definition} {eigentlich}
+{
+Sei $(M,g)$ Riemannsche Mf, $c \in C^\infty([0,a],M)$, $V \in \Gamma_c(TM)$
+und $\eps > 0$.
+\fl{Dann existiert eine Variation $f$}
+\[
+f : (-\eps,\eps) \times [0,a] \to M
+\]
+\fl{mit Variationsvektorfeld $V$.}
+Ist noch $V(0) = 0$ und $V(a) = 0$, 
+\\
+\fl{so können wir annehmen, dass }
+\[
+f(s,0) = c(0) \text{ und } f(s,a) = c(a) \quad \forall s \in (-\eps,\eps).
+\]
+\fl{Wir sagen dazu, dass die Variation $f$ \texttt{eigentlich} ist.}
+}
+{}
+
+\nonameyet
+{\scriptsize Satz \thissatz \& Korollar} 
+{ \begin{minipage}{0.28\linewidth}
+\scriptsize Erste Variationsformel\\ für die Energie
+\end{minipage}}
+{
+	\small
+$(M,\blf{\cdot,\cdot})$ eine Riemannsche Mf, $c\in C^\infty([0,a],M)$, 
+$\eps > 0$,$f$ eine 
+Variation von $c$ mit $f_s(t)\ C^\infty([0,a],M)$ für alle $s\in (-\eps,\eps)$. 
+Es sei weiter  
+\[
+E(s) := E(f_s) = \int_0^a \| \dot f_s(t)\|^2 dt
+\]
+und $V$ bezeichne das Variationsvektorfeld der Variation $f$.
+\fl{Dann gilt:}
+\[
+\frac{1}{2} \dot E(0) = - \int_0^a \blf{V(t),\nabladt \dot c (t)}dt 
+- \blf{V(0),\dot c(0)} + \blf{V(a), \dot c(a)}.
+\]
+
+\fl{\textsc{Korollar:} $c\in C^\infty([0,a],M)$ ist genau dann eine Geodätische,
+wenn für jede eigentliche Variation $f$ von $c$ gilt, dass $\dot E(0) = 0$.}
+}
+{}
+\newcommand{\ddt}[1]{\overset{\;\textbf{..}}{#1}}
+\newcommand{\nabladdt}{\frac{\nabla^2}{dt^2}}
+\nonameyet
+{\scriptsize Satz \thissatz \& Notiz} 
+{ \begin{minipage}{0.28\linewidth}
+\scriptsize Zweite Variationsformel\\ für die Energie
+\end{minipage}}
+{
+	\small
+$(M,\blf{\cdot,\cdot})$ eine Riemannsche Mf mit $R$ als Krümmungstensor von 
+$\blf{\cdot,\cdot}$, $c\in C^\infty([0,a],M)$, $\eps > 0$, $f$ eine 
+Variation von $c$ mit $f_s(t)\ C^\infty([0,a],M)$ für alle $s\in (-\eps,\eps)$. 
+$V$ bezeichne das Variationsvektorfeld der Variation $f$.
+\fl{Dann gilt:}
+\[
+\begin{aligned}
+\frac{1}{2} \ddt{E}(0) =& 
+- \int_0^a \blf{\nabladdt V + R(V,\dot c)\dot c, V}(t) dt 
+\\ &
+- \blf{\nabladt[s] \frac{\partial f}{\partial s}, \dot c}(0,0)
++ \blf{\nabladt[s] \frac{\partial f}{\partial s}, \dot c}(0,a)
+\\ &
+- \blf{V(0),\nabladt V(0)}|_{t=0} + \blf{V(a), \nabladt V(a)}|_{t =a}.
+\end{aligned}
+\]
+
+\fl{\textsc{Notiz 1:} Ist $f$ eine eigentliche Variation von $c$, fallen alle 
+bis auf den ersten Summanden weg.}
+
+\fl{\textsc{Notiz 2:} Der erste Eintrag in $\blf{\cdot,\cdot}$ im ersten 
+Summanden ist gerade die Jacobigleichung.}
+}
+{}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 3.6 Bonnet-Myers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\defreset
+\satzreset
+\kommentar{Bonnet-Myers}
+
+\nonameyet
+{Satz} {Bonnet-Myers}
+{
+\small
+Sei $(M,\blf{\cdot,\cdot})$ eine vollständige Riemannsche Mannigfaltigkeit. 
+Es gebe ein $r > 0$, so dass
+\[
+Ric_p(v) \geq \frac{1}{r^2} > 0 
+\quad \forall p\in M,
+\; \forall v\in T_pM \text{ mit } \|v\| = 1.
+\]
+\fl{Dann ist $M$ kompakt und der \texttt{Durchmesser} von $M$}
+\[
+\text{diam}(M) := \sup_{p,q \in M} d(p,q) 
+\]
+\fl{erfüllt }
+\[
+\text{diam}(M) \leq \pi r.
+\]
+\fl{Weiterhin ist die Fundamentalgruppe $\pi_1(M)$ ist endlich.}
+}
+{}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENDE  ENDE   ENDE  ENDE  ENDE  ENDE  ENDE  ENDE  ENDE  ENDE  ENDE  ENDE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
 %% Template	
