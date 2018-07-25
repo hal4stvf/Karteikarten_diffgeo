@@ -77,7 +77,7 @@
 %%% Hauptbefehl um eventuell später auf ein anderes
 %% Format um zuschalten.
 %																				Typ Name  Vorderseite
-\newcommand{\nonameyet}[4]{\begin{karte}[{#1} ({#2})]{{#3}} #4\end{karte}}
+\newcommand{\nonameyet}[4]{\begin{karte}[{\small #1} ({#2})]{{#3}} #4\end{karte}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -88,13 +88,12 @@
 \\ $M \not = \emptyset$,
 $M$ erfüllt zweites Abzählbarkeitsaxiom und ist Hausdorffsch.
 \\
-~\\
-Dann heißt $M$ topologische Mannigfaltikeit der Dimension $n$, falls es zu
-jedem Punkt $p \in M$ eine in $M$ offene Umgebung $U$ 
-und eine offene Teilmenge $V\subset \R^n$ gibt, 
-so dass ein Homöomorphismus $\varphi : U \to V$ existiert.
-\\
-$(U,\varphi)$ nennt man eine Karte von $M$.
+\fl{Dann heißt $M$ topologische Mannigfaltikeit der Dimension $n$, falls es zu
+		jedem Punkt $p \in M$ eine in $M$ offene Umgebung $U$ 
+		und eine offene Teilmenge $V\subset \R^n$ gibt, 
+		so dass ein Homöomorphismus $\varphi : U \to V$ existiert.}
+
+\fl{$(U,\varphi)$ nennt man eine \texttt{Karte} von $M$.}
 }
 {}
 
@@ -104,21 +103,21 @@ $(U,\varphi)$ nennt man eine Karte von $M$.
 = \{(U_\alpha,\varphi_\alpha) | \alpha \in A \}$
 eine Familie von Karten von M. 
 \\
-Dann heißt $\mathcal{A}$ ein  \texttt{$(C^\infty)$-Atlas}, falls folgendes gilt:
+\fl{Dann heißt $\mathcal{A}$ ein  \texttt{$(C^\infty)$-Atlas}, falls folgendes gilt:}
 \begin{enumerate}[1.]
 \item $\bigcup_{\alpha \in A} U_\alpha = M$
 \item $\varphi_\beta \circ \varphi_\alpha^ {-1} 
 : \varphi_\alpha(U_\alpha \cap U_\beta) \to \varphi_\beta(U_\alpha \cap U_\beta$
 ist $C^\infty$ für alle $\alpha, \beta \in A$. 
-\footnotesize
-(Die Abbildungen $\varphi_\beta \circ \varphi_\alpha^{-1}$ heißen 
+%\footnotesize
+\par (Die Abbildungen $\varphi_\beta \circ \varphi_\alpha^{-1}$ heißen 
 \texttt{Karten- oder Koordinatenwechsel}.)
 \end{enumerate}
 }
 {}
 
 \nonameyet
-{Definiton} {$C^\infty$-differenzierbare Struktur}
+{Definition} {$C^\infty$-differenzierbare Struktur}
 {Sei $\mathcal{A}$ ein $C^\infty$-Atlas. 
 %
 \\ 
@@ -131,7 +130,8 @@ falls folgendes erfüllt ist:
 \setcounter{enumi}{2}
 %
 \item $\mathcal{A}$ ist maximal in dem Sinne, dass eine Karte $(U,\varphi)$ 
-bereits zu $\mathcal{A}$ gehört, falls 
+bereits zu $\mathcal{A}$ gehört, falls für alle $\alpha \in A$ folgende 
+Abbildungen $C^\infty$
 %
 \vspace{-0.5em}
 \[
@@ -146,22 +146,31 @@ bereits zu $\mathcal{A}$ gehört, falls
 \end{aligned}
 \]
 %
-für alle $\alpha \in A$  $C^\infty$ ist.
 \end{enumerate}
 }
 {}
 
 \nonameyet
-{Defintion} {$n$-dim differenzierbare Mannigfaltigkeit}
-{Sei $M$ eine $n$-dim. topologische Mf und $\mathcal{A}$ eine differenzierbare Struktur.
+{\tiny Defintion \& Notiz} {\scriptsize $n$-dim differenzierbare Mannigfaltigkeit}
+{
+\small
+Sei $M$ eine $n$-dim. topologische Mf und $\mathcal{A}$ eine differenzierbare 
+Struktur.
 \\
 ~\\
 Eine \texttt{$n$-dimensionale Mannigfaltigkeit} ist ein Paar $(M,\mathcal{A})$.
+
+\fl{\textsc{Notiz 1:} Zu jeder diffb. Mf gibt es stets einen abzählbaren Atlas. 
+(Begründung: Abzählbare Basis von $M$)}
+
+\fl{\textsc{Notiz 2:} Ein $C^\infty$ Atlas induziert eine eindeutige 
+\textit{differenzierebare Struktur}.}
 }
 {}
 \nonameyet
 {Definition} {Untermannigfaltigkeit}
 {
+\small 
 Sei $M \subset \R^k$ eine nichtleere Teilmenge.
 \\
 \fl{$M$ heißt \texttt{$n$-dim. Untermannigfaltigkeit von $\R^k$}, wenn es
@@ -175,9 +184,9 @@ Sei $M \subset \R^k$ eine nichtleere Teilmenge.
 \]
 \end{enumerate}
 %
-\tiny
-Man kann eine Untermannigfaltigkeit des $\R^k$ auch als differenzierbare Mf
-auffassen. 
+
+\fl{\textsc{Notiz:} Man kann eine Untermannigfaltigkeit des $\R^k$ auch als differenzierbare Mf
+		auffassen. }
 % TODO
 }
 {}
@@ -185,9 +194,9 @@ auffassen.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 1.3
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\kommentar{1.3 Differenzierbare Abbildungen}
+\kommentar{\footnotesize 1.3 Differenzierbare Abbildungen}
 \nonameyet
-{Definition} {differenzierbare Abbildung zw Mf}
+{\footnotesize Definition} {\footnotesize diffb. Abbildungen zw Mf}
 {
 Seien $(M,\{(U_\alpha, \varphi_\alpha)| \alpha \in A\})$ 
 und $(N,\{(V_\beta, \psi_\beta)| \beta \in B\})$ 
@@ -274,7 +283,7 @@ Es sei $M$ eine diffb. Mf und sei
 \[
 v : \mathcal{F}_p \to \R,
 \]
-\fl{eine lineare Abbildung, die die sogenannte Leibnis-Regel erfüllt, d.h.}
+\fl{eine lineare Abbildung, die die sogenannte Leibniz-Regel erfüllt, d.h.}
 \[
 v([f]\cdot[g]) = v([f])\cdot g(p) + f(p)\cdot v([g]).
 \]
@@ -301,12 +310,12 @@ versehen mit der Vektorraumstuktur
 {}
 
 
-\nonameyet
-{Bemerkung 1.4.2} {}
-{
-Per Hand
-}
-{}
+%\nonameyet
+%{Bemerkung 1.4.3} {}
+%{
+%Per Hand
+%}
+%{}
 
 \nonameyet
 {Definition} {lokale und Standardkoordinaten}
@@ -330,10 +339,10 @@ x_i := u_i \circ \varphi, \quad \text{also} \quad
 {}
 
 \nonameyet
-{Lemma} {\tiny Partielle Ableitung sind Tangentialvektoren}
+{\footnotesize Lemma} {\scriptsize partielle Ableitung sind Tangentialvektoren}
 {
 \footnotesize
-Es $M$ diffb. Mf, $(U,\varphi)$ eine Karte um p mit lokalen Koordinaten 
+Sei $M$ diffb. Mf, $(U,\varphi)$ eine Karte um p mit lokalen Koordinaten 
 $\varphi= (x_1,\dots,x_n)$.
 \fl{Wir definieren}
 \[
@@ -344,7 +353,8 @@ $\varphi= (x_1,\dots,x_n)$.
 := \frac{\partial f }{\partial x_i}(p)
 := \frac{\partial (f\circ \varphi^{-1})}{\partial u_i} (\varphi(p)).
 \]
-\fl{Nun gilt: $\frac{\partial}{\partial x_i}\bigg|_p$ ist ein Tangentialvektor an $p$.}	
+\fl{Nun gilt: $\frac{\partial}{\partial x_i}\bigg|_p$ ist ein Tangentialvektor 
+an $p$.}	
 TODO: hier auch Bsp 1.4.5
 }
 {}
@@ -422,7 +432,7 @@ d(G\circ F)_p = dG_{F(p)}\circ dF_p
 Sei $M$ differenzierbare Mf, $a,b \in \R$, $I = (a,b)$.
 \\
 Zu $c\in C^\infty(I, M)$ sagen wir auch \texttt{glatte Kurve in M}.
-\fl{Weiter definiere wir für $t\in (a,b)$:}
+\fl{Weiter definieren wir für $t\in (a,b)$:}
 \[
 c'(t) = \dot c(t) := dc_t(\frac{\partial}{\partial x}\bigg|_t)
 \in T_{c(t)} M.
@@ -451,8 +461,9 @@ dF_p(v) = (F \circ c)' (0).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 1.6 Resultate aus der Analysis
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\kommentar{\tiny Resultate aus der Analysis}
 \nonameyet
-{Definition 1.6.1} {\small (differenzierbare) Zerlegung der Eins}
+{\scriptsize Definition 1.6.1} {\footnotesize (differenzierbare) Zerlegung der Eins}
 {
 	\scriptsize
 Sei $M$ differenzierbare Mannigfaltigkeit. $I,A$ beliebige Indexmengen,
@@ -495,7 +506,7 @@ Sei $M$ diffb Mf, $\mathcal{U}$ eine offene Überdeckung von $M$.
 \fl{Dann existiert eine abzählbare differenzierbare Zerlegung der Eins,
 der $\mathcal{U}$ untergeordnet ist.}
 \fl{\textbf{Korollar:}} 
-Sei $U \subset M$ offen, $A \subset U$ abgeschlossen in $M$, $f\in C^\infty(U)$
+Sei $U \subset M$ offen, $A \subset U$ abgeschlossen in $M$, $f\in C^\infty(U)$.
 \fl{Dann gibt $g\in C^\infty(M)$ mit $g|_A = f|_A$ und $g|_{M\setminus U} = 0$.}
 }
 {}
@@ -538,12 +549,17 @@ ein Diffeomorphismus ist.
 {Satz 1.6.6} {}
 {
 Sei $U\subset \R^n$ eine Umgebung von $0\in \R^n$. $f\in C^\infty(U,\R^k)$ mit
-$f(0) = 0 $. Sei $df_0$ 
+$f(0) = 0 $.
 \begin{enumerate}[1.]
 \item Ist $n \leq k$ und das Differential $df_0$ injektiv, so gibt es ein
-Diffeomorphismus $\psi : $
+Diffeomorphismus $\psi$ um $0\in \R^k$ und $\varphi$ um $0 \in R^n$, so dass
+\[
+\psi \circ f \circ \varphi^{-1} (x_1,\dots,x_n) 
+= (x_1,\dots,x_n, \underbrace{0,\dots,0}_{k-n})
+\]
+für $(x_1,\dots,x_n)$ in der entsprechenden Umgebung von $0 \in \R^k$.
+\item Für $n \geq k$ analog Aussage für $df_0$ surjektiv.
 \end{enumerate}
-TODO
 }
 {}
 
@@ -739,12 +755,13 @@ $E_p := \pi^ {-1}(p)$ heißt \texttt{Faser von $p$}.
 \end{itemize}
 }
 {}
-\nonameyet
-{Bem 1.8.2} {}
-{
-TODO Bem. 1.8.2
-}
-{}
+
+%\nonameyet
+%{Bem 1.8.2} {}
+%{
+%TODO Bem. 1.8.2
+%}
+%{}
 
 \nonameyet
 {Definition 1 und Notiz} {Schnitt}
@@ -957,9 +974,9 @@ J \subset I \text{ und } \alpha|_J = \beta
 {}
 
 \nonameyet
-{Satz 1.10.5} {}
+{\scriptsize Satz \& Definition } {\scriptsize lokaler und globaler Fluss}
 {
-\small 
+\footnotesize
 Sei $M$ diffb. Mf, $X$ Vektorfeld auf $M$. 
 \fl{Dann existiert eine Umgebung $U$ um $p \in M$, ein Intervall $I$ 
 mit $0\in I$, sowie}
@@ -969,24 +986,18 @@ mit $0\in I$, sowie}
 \fl{so dass gilt}
 \begin{enumerate}[1.]
 \item $\Phi(0,q) = q$ für alle $q\in U$.
-\item $\alpha : I \to M$, $t \mapsto \Phi(t,q)$ ist eine Integralkurve von X,
+\item $\alpha : I \to M$, $t \mapsto \Phi(t,q)$ ist eine Integralkurve von X
+mit Anfangsbedingun $\alpha(0) = q$,
 d.h.
 \[
 \alpha'(t) = \frac{\partial}{\partial t} \Phi(t,q) = X_{\alpha(t) = \Phi(t,q)}
 \]
 \end{enumerate}
-}
-{}
-
-\nonameyet
-{Definition} {lokaler und globaler Fluss}
-{
-Sei $M$ diffb. Mf, $X$ Vektorfeld auf $M$. (Vor. Satz. 1.10.5) 
 \fl{Dann heißt $\Phi\in C^\infty(I\times U, M)$ \texttt{lokaler Fluss}
 von $X$.}
-\fl{Falls $I = \R$ so heißt $\Phi$ \texttt{globaler Fluss}.}
-\small
-Es gilt weiterhin, dass wenn $t,s \in I$, $q\in U$, ist $\Phi(t,q) \in U$ und 
+\fl{Falls $I = \R$ , $U = M$ so heißt $\Phi\in C^\infty(\R \times M, M)$
+\texttt{globaler Fluss}.}
+\fl{Es gilt weiterhin, dass wenn $t,s \in I$, $q\in U$, ist $\Phi(t,q) \in U$ und }
 \[
 \Phi(s, \Phi(t,q)) = \Phi(s + t, q)
 \]
@@ -1008,23 +1019,20 @@ erfüllt ist.
 {}
 
 \nonameyet
-{Satz} {}
+{Satz} {$M$ kompakt}
 {
 Sei $M$ diffb. Mf.
-\\
-~\\
-Ist $M$ kompakt, so ist jedes Vektorfeld auf $M$ vollständig.
+
+\fl{Ist $M$ kompakt, so ist jedes Vektorfeld auf $M$ vollständig.}
 }
 {}
 
 \nonameyet
-{Satz} {}
+{Satz} {Existenz globaler Fluss}
 {
 Sei $M$ diffb. Mf.
-\\
-~\\
-Ist $X$ ein vollständiges Vektorfeld, dann existiert ein globaler Fluss
-auf X.
+\fl{Ist $X$ ein vollständiges Vektorfeld, dann existiert ein globaler Fluss
+		auf X.}
 }
 {}
 
@@ -1406,9 +1414,10 @@ $X \in \Gamma_c(TM)$.
 \nonameyet
 {Satz \thissatz und Notiz} {Existenz VF längs $c$}
 {
+	\small
 Sei $M$ diffb. Mf mit affinen Zusammenhang $\nabla$, 
 $I = [a,b] \subset \R$, $c\in C^\infty(I,M)$ und sei $v \in T_{c(a)}M$.
-\fl{Dann existiert ein eindeutiges Vektorfeld $X$ längs c,
+\fl{Dann existiert ein eindeutiges paralleles Vektorfeld $X$ längs c,
 so dass $X(a) = v$.}
 \[
  \exists ! X \in \Gamma_c(TM): X(a) = v
@@ -1416,13 +1425,14 @@ so dass $X(a) = v$.}
 \]
 \fl{\textsc{Notiz:} $\Gamma_c(TM)$ ist ein Vektorraum und dieser Satz zeigt,
 eine Basis dieses Vektorraums zu jedem $t\in I = [a,b]$ eine Basis
-des Tangentialraums $T_{c(t)}M$ liefert.}
+des Tangentialraums $T_{c(t)}M$ liefert. ((und) andersherum ?)}
 }
 {}
 
 \nonameyet
 {Definition \thisdef \& Satz \thissatz} {\footnotesize Parallelverschiebung}
 {
+	\small
 Sei $M$ diffb. Mf mit affinen Zusammenhang $\nabla$, 
 $I = [a,b] \subset \R$, $c\in C^\infty(I,M)$ und sei 
 \\ 
@@ -1563,7 +1573,7 @@ längs $\gamma$. Diese $\dot \gamma$ sei parallel, es gilt also
 {}
 
 \nonameyet
-{Satz} {\tiny Existenz und Eindeutigkeit der Geodätischen}
+{\small Satz} {\small Existenz und Eindeutigkeit der Geodätischen}
 {
 \small
 Sei $M$ diffb Mf mit affinen Zusammenhang $\nabla$. 
@@ -1596,27 +1606,111 @@ $\gamma$ mit $\gamma(0) = p$, $\gamma'(0) = v$ ist eindeutig und schreibt
 $\gamma_v$.
 \\
 }
-{
-	TODO 
-	\\
-	Diese Konstruktion gerne texen
-}
+{}
+
 
 \nonameyet
-{Definition} {geodätischer Fluss}
+{Konstruktion} {(1/1)}
 {
-TODO : Konstruktion S.46 
-%
+\vspace{-2.8em}
+\scriptsize
+Sei $M$ diffb. M, $I \subset \R$, $\gamma \in C^\infty(I,M)$, 
+$(U,\varphi), \varphi = (x_1,\dots,x_n)$, $\gamma_i := x_i \circ \gamma$. 
+\fl{Dann ist }
+\vspace{-2em}
+\[
+\gamma|_U \text{ Geodätische } \Leftrightarrow
+\gamma|_{U} \text{ löst }
+\begin{cases}
+\dot \gamma_k = \eta_k
 \\
-Der lokale Fluss von $Y$ heißt geodätsicher Fluss.
-\scriptsize 
-\fl{Dies ist so zu verstehen:}
-$Y$ ist Vektorfeld auf $TTU$. Eine Integralkurve zu $Y$ heiße
-$\gamma : I \to TU$. Dann ist der lokale Fluss eine Abbildung
-$\Phi: I \times TU \to TTU \overset{\sim}{=} TU$ mit 
-$ \Phi(t,v) = \dot\gamma_v(t)$ für alle $t\in I$, die noch zusätzliche 
-Bedingung erfüllt.
+\dot \eta_k = -\sum_{i,j} \dot \gamma_i \dot \gamma_k \Gamma^k_{ij} \circ \gamma
+\end{cases}
+\quad \#
+\]
+\fl{Wir betrachten nun eine Kurve auf $TM$ und zwar $\gamma \in C^\infty(I,TM)$,
+um damit zu arbeiten sammlen wir hier ein paar Abbildung und Eigenschaften:}
+\begin{itemize}[$\mathbf{\cdot}$]
+\item $\pi: TM \to M, (p,v) \mapsto p$ 
+%\vspace{-3.2em}
+\item 
+$\psi : TU \to \varphi(U) \times \R^n, 
+(p,v) \mapsto 
+(
+%\overbrace{\varphi(\pi(p,v))}^
+%{\parbox{4em}{$\varphi(p) = (x_1(p),\dots,x_n(p))$}}
+\varphi(\pi(p,v)),
+v(x_1),\dots,v(x_n))$
+, d.h. mit $y_i(p,v) = v(x_i)$ 
+ist für $\psi = (x_1\circ \pi,\dots,x_n\circ \pi,y_1,\dots,y_n)$ $(TU,\psi)$
+eine Karte von $TM$.
+\item Angewendet auf $(\gamma,\dot \gamma)$ gilt mit $\gamma_i = x_i \circ \gamma$
+und $\dot \gamma_i = x_i \circ \dot \gamma$
+%\vspace{-1.0em}
+\[
+\psi (\gamma(t),\dot \gamma(t)) =  (\gamma_1(t),\dots,\gamma_n(t),
+\dot \gamma_1(t),\dots, \dot \gamma_n(t))
+\]
+%\vspace{-1.8em}
+\item Nun sei $X\in \Gamma(T(\varphi(U) \times \R^n))$ für 
+$a = (a_1,\dots,a_n)\in\varphi(U)$ und $b = (b_1,\dots,b_n)\in \R^n$ gegeben 
+durch: 
+%\vspace{-1.8em}
+\[
+X(a,b) = 
+(b_1,\dots,b_n,-\sum_{i,j} \Gamma^1_{ij}\circ \varphi^{-1}(a) \cdot b_ib_j,
+\dots, -\sum_{i,j} \Gamma^n_{ij}\circ \varphi^{-1}(a) \cdot b_ib_j)
+\]
+\vspace{-2.2em}
+\item Dann gilt, dass eine Kurve $\alpha:I \to \varphi(U) \times \R^n$ genau dann eine 
+Integralkurve von $X$ ist wenn $(\gamma_i,\eta_i)$ Lösung von $\#$ sind.
+\end{itemize}
 }
+{}
+
+\nonameyet
+{Konstruktion } {(2/2)}
+{
+	\scriptsize
+Sei $\alpha(t) = \psi(\gamma(t),\gamma'(t))$  und 
+$(\dot \alpha(t) = (\dot \gamma_1(t),\dots,\dot \gamma_n(t), 
+\dot \eta_1(t),\dots,\dot \eta_n(t))$, $i \in \{1,\dots,2n\}$
+\[
+\begin{aligned}
+\gamma \text{ ist Geodätiche} 
+\Leftrightarrow &
+\quad
+u_i \circ \dot \alpha (t) = u_i \circ X(\alpha(t)) 
+\\ (\Leftrightarrow & 
+\quad \text{ z.B. }  \dot \gamma_i = \eta_i 
+\text{ oder }
+\dot \eta_i = - \sum_{i,j} \Gamma^i_{ij}\circ \gamma\cdot 
+\dot \gamma_i \dot \gamma_j   
+\end{aligned}
+\]
+\begin{itemize}[$\mathbf{\cdot}$]
+\item Betrachte nun: $Y \in \Gamma(TUU)$, ein Vektorfeld also, definiert über
+\[
+Y = (d\psi ^{-1})\circ X \circ \psi: TU \to TUU, (p,v) \mapsto Y(p,v)
+\]
+Wir holen also die Gleichung von oben zurück nach $TU$ und die Integralkurve 
+von $Y$ ist genau $\dot \gamma : I \to TU$. Mit diesen Überlegung folgt dann
+der nächste Satz.
+\item Schließlich kann man dieses Resultat auf ganz $M$ fortsetzen.
+\end{itemize}
+}
+{}
+\nonameyet
+{Definition} {Geodätischer Fluss}
+{
+	\small
+Siehe Konstruktion für $Y$.\\
+Der lokale Fluss von $Y\in\Gamma(TUU)$ heißt geodätsicher Fluss.
+\small
+\fl{Dies ist so zu verstehen:}
+Dann ist der lokale Fluss eine Abbildung
+$\Phi: I \times TU \to TU $ mit 
+$ \Phi(0,v) = v$ und $\Phi(t,v) = \gamma_v(t)$ ist Integralkurve von $Y$.}
 {}
 
 \nonameyet
